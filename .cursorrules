@@ -98,4 +98,5 @@
 
 IMPORTANT:
 
-- Always add a one-sentence summary of changes to `CHANGES.md` file in markdown format at the end of every agent interaction.
+- Always add a short summary of changes to `CHANGES.md` file in markdown format at the end of every agent interaction.
+- Always update the README.md file in markdown format at the end of every agent interaction if you think you modified important files.
