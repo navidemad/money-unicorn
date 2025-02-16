@@ -1,68 +1,101 @@
-{
-  "info": {
-    "rubyVersion": "3.4.2",
-    "railsVersion": "8.0.1",
-    "tailwindVersion": "4",
-    "database": "PostgreSQL 16.7",
-    "dependencies": [
-      "solid_cable",
-      "solid_cache",
-      "solid_queue",
-      "propshaft",
-      "taildwind",
-      "daisyui",
-      "hotwire",
-      "turbo",
-      "stimulus",
-      "minitest",
-      "selenium",
-      "@hotwired/turbo-rails",
-      "@rails/request.js"
-    ],
-    "conventions": [
-      "Maintain a clear and logical project structure",
-      "If unsure or if there is no correct answer, admit it. Avoid guessing.",
-      "Format code blocks using markdown with language specified",
-      "Follow Rails' 'Convention Over Configuration' principle",
-      "Specify file path and restate method/class for existing code blocks",
-      "Avoid trailing whitespace and ensure files end with a newline",
-      "Prioritize security and performance optimization"
-    ],
-    "guidelines": [
-      "Follow the MVC pattern strictly",
-      "Structure project in a modular way using Rails engines",
-      "Keep business logic in models; keep controllers light",
-      "Implement service objects for complex business logic",
-      "Use Rails' built-in features and tools wherever possible",
-      "Use Rails' Action Controller for handling requests and rendering responses",
-      "Leverage Active Record as the ORM; avoid raw SQL queries unless necessary",
-      "Use Rails' built-in user model and authentication framework",
-      "Utilize Rails' form helpers and Active Model validations",
-      "Use Rails views, partials, templates for HTML",
-      "Use Rails' routing system to define clear and RESTful URL patterns",
-      "Prioritize readability and maintainability; follow Rails' coding style guide",
-      "Use descriptive variable and function names; adhere to naming conventions",
-      "Write clear, technical responses with precise Rails examples",
-      "Implement error handling at the controller level; use Rails' error handling mechanisms",
-      "Use Active Model validations to validate model data",
-      "Prefer begin-rescue blocks for handling exceptions",
-      "Use Rails callbacks to decouple error handling and logging",
-      "Apply Rails' security best practices",
-      "Use Rails' built-in tools for testing (Minitest)",
-      "Leverage Rails' caching system to optimize performance",
-      "Optimize query performance using Active Record's eager loading",
-      "Use Rails' cache store with Redis to reduce database load",
-      "Implement caching strategies (fragment caching, Russian Doll caching)",
-      "Implement database indexing and query optimization techniques",
-      "Use asynchronous jobs (via Active Job) for I/O-bound or long-running operations",
-      "Use Ruby 3.x features when appropriate",
-      "Do not lie or make up facts; admit if unsure or no correct answer",
-      "Follow the user's requirements carefully and to the letter.",
-      "Write code that is always correct, up to date, bug-free, secure, and performant.",
-      "Never leave to-dos, placeholders, or incomplete functionality.",
-      "Be concise—minimize unnecessary prose.",
-      "If specifically asked for code edits, provide a simplified diff highlighting changes with comments indicating skipped code. Explain the changes unless told not to.",
-      "Refer to Rails Guides for best practices in controllers, models, views, routing, and security considerations."
-    ]
-  }
-}
+# Components & Naming
+
+- Use Rails partials (_component.html.erb) for reusable UI components.
+- Store UI components in app/views/components/.
+- Use ViewComponent for complex components with logic.
+- Use Tailwind for styling (avoid Bootstrap, Radix, or third-party UI kits).
+- Keep them small, typed with interfaces.
+
+# ActiveRecord & Database
+
+- Use snake_case for table and field names.
+- Keep all DB logic inside models (no raw SQL in controllers/views).
+- Prefer scopes over direct ActiveRecord queries in controllers.
+- Use foreign keys and indexes (add_foreign_key, add_index).
+- Migrations: rails g migration AddFieldToTable field:type.
+- Optimize query performance using Active Record's eager loading
+- Implement database indexing and query optimization techniques
+- Leverage Active Record as the ORM; avoid raw SQL queries unless necessary
+
+# Icons
+
+- Use Heroicons (heroicon_tag "icon-name") for inline SVGs.
+- Store custom SVGs in app/assets/images/icons/.
+
+# Flash & Notifications
+
+- Use Rails flash for server-side notifications:
+- Use Stimulus + toastify-js for client-side toast messages.
+
+# Rails Structure
+
+- Use RESTful routes (resources :users).
+- Controllers should be skinny (business logic in models/services).
+- Use Service Objects (app/services/) for complex logic.
+- Background jobs in app/jobs/ (use Sidekiq if Redis is available).
+- Environment variables in .env or credentials.yml.enc.
+
+# API & Authentication
+
+- Use Current.user to access to authenticated user.
+- API endpoints under app/controllers/api/v1/.
+
+# Type Safety & Syntax
+
+- Enable strict mode in Ruby (# frozen_string_literal: true).
+- Use strong parameters in controllers (params.require(:user).permit(:name, :email)).
+- Avoid any-like behavior (e.g., OpenStruct).
+- Use guard clauses instead of deep nesting
+
+# File & Folder Names
+
+- Controllers/models/helpers in snake_case (users_controller.rb).
+- Views in kebab-case (app/views/users/index.html.erb).
+- Stylesheets in app/assets/stylesheets/, using Tailwind utilities.
+
+# Tailwind Usage
+
+- Use Tailwind (mobile-first, dark mode with dark:(class)).
+
+# Background Jobs
+
+- Use solid_queue and ActiveJob for background task
+- Use asynchronous jobs (via Active Job) for I/O-bound or long-running operations
+
+# Caching
+
+- Implement caching strategies (fragment caching, Russian Doll caching)
+
+# AI
+
+- Prefer `o3-mini` model with high reasoning effort for all AI calls.
+
+# Misc
+
+- Keep code short; commits semantic.
+- Sensitive string keys have to be inserted in .env
+
+# Gems
+
+- ruby 3.4.2
+- rails 8.0.1
+- tailwind 4
+- database PostgreSQL 16.7
+- solid_cable
+- solid_cache
+- solid_queue
+- google-cloud-text_to_speech
+- propshaft
+- taildwind
+- daisyui
+- hotwire
+- turbo
+- stimulus
+- minitest
+- selenium
+- @hotwired/turbo-rails
+- @rails/request.js
+
+IMPORTANT:
+
+- Always add a one-sentence summary of changes to `CHANGES.md` file in markdown format at the end of every agent interaction.
