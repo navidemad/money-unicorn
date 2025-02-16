@@ -98,5 +98,6 @@
 
 IMPORTANT:
 
+- Run the command `bundle install` to install all the dependencies every time you added a gem to the Gemfile.
 - Always add a short summary of changes to `CHANGES.md` file in markdown format at the end of every agent interaction.
 - Always update the README.md file in markdown format at the end of every agent interaction if you think you modified important files.

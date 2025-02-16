@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     namespace :youtube do
       resources :channels do
         resources :shorts, module: :channels
+        member do
+          post :generate_youtube_short
+        end
       end
     end
     get "theme", to: "pages#theme"

@@ -1,0 +1,5 @@
+<%= turbo_frame_tag :flash_messages, class: "w-full opacity-90" do %>
+  <% flash.each do |kind, message| %>
+    <%= render partial: "layouts/shared/flash_message", locals: { kind: kind, message: message } %>
+  <% end %>
+<% end %>

@@ -1,0 +1,14 @@
+<%
+  case kind
+  when "alert"
+    additional_classes = "alert-error border-red-100!"
+  when "notice"
+    additional_classes = "alert-error border-green-100!"
+  else
+    additional_classes = "alert-info border-cyan-100!"
+  end
+%>
+
+<div role="alert" data-turbo-cache="false" class="<%= class_names("alert alert-soft font-bold mb-3 border-2!", additional_classes) %>">
+  <span><%= message %></span>
+</div>

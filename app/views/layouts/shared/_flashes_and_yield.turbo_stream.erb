@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend :flash_messages do %>
+  <% flash.each do |kind, message| %>
+    <%= render partial: "layouts/shared/flash_message", locals: { kind: kind, message: message } %>
+  <% end %>
+<% end %>
+
+<%= yield %>

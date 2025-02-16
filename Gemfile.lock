@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 8e504b017a68981076746c2d19fd23c788e4293e
+  revision: d6bd069ec652c3f6478385a75fd499e5f791de3a
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -134,10 +134,13 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
+    event_stream_parser (1.0.0)
     faraday (2.12.2)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
+    faraday-multipart (1.1.0)
+      multipart-post (~> 2.0)
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
     faraday-retry (2.2.1)
@@ -268,6 +271,7 @@ GEM
     minitest (5.25.4)
     msgpack (1.8.0)
     multi_json (1.15.0)
+    multipart-post (2.4.1)
     net-http (0.6.0)
       uri
     net-imap (0.5.6)
@@ -341,7 +345,11 @@ GEM
     regexp_parser (2.10.0)
     reline (0.6.0)
       io-console (~> 0.5)
-    rexml (3.4.0)
+    rexml (3.4.1)
+    ruby-openai (7.4.0)
+      event_stream_parser (>= 0.3.0, < 2.0.0)
+      faraday (>= 1)
+      faraday-multipart (>= 1)
     ruby-vips (2.2.3)
       ffi (~> 1.12)
       logger
@@ -447,6 +455,8 @@ DEPENDENCIES
   propshaft
   puma
   rails!
+  ruby-openai
+  ruby-vips
   selenium-webdriver
   solid_cable
   solid_cache

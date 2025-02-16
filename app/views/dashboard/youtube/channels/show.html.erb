@@ -6,3 +6,18 @@
     <%= button_to "Destroy", dashboard_youtube_channel_path(@youtube_channel), method: :delete, class: "btn btn-error" %>
   </div>
 </div>
+
+<div class="flex items-center justify-between mb-3">
+  <h1 class="font-bold text-2xl">Youtube Shorts (<%= @youtube_channel.shorts.size %>)</h1>
+
+  <div class="flex items-center justify-start space-x-3">
+    <%= button_to "Generate New Short", generate_youtube_short_dashboard_youtube_channel_path(@youtube_channel), method: :post, class: "btn btn-secondary", data: { turbo_stream: true } %>
+  </div>
+</div>
+
+<%= turbo_stream_from [@youtube_channel, :youtube_shorts] %>
+<%= turbo_frame_tag "youtube_shorts" do %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <%= render partial: @youtube_channel.shorts, collection: @youtube_channel.shorts %>
+  </div>
+<% end %>

@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html data-theme="light">
+<html class="h-full scroll-smooth antialiased" dir="ltr" data-theme="light" lang="en">
   <head>
     <title><%= content_for(:title) || "Money Unicorn" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover, <%= @is_safari ? "maximum-scale=1" : "shrink-to-fit=no" %>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="view-transition" content="same-origin">
+    <meta name="turbo-refresh-method" content="morph">
+    <meta name="turbo-refresh-scroll" content="preserve">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Money Unicorn">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="color-scheme" content="light dark">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -18,12 +23,13 @@
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.0-beta.8/daisyui.css" rel="stylesheet" type="text/css" />
     <%= javascript_importmap_tags %>
+    <%= yield :head %>
   </head>
 
   <body>
     <%= render "layouts/shared/header" %>
     <div class="md:w-2/3 pt-3 w-full mx-auto">
-      <%= render "layouts/shared/flashes" %>
+      <%= render "layouts/shared/flash_messages" %>
       <main class="py-4 px-4">
         <%= yield %>
       </main>

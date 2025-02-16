@@ -1,16 +1,14 @@
 #!/usr/bin/env sh
 
-if ! gem list foreman -i --silent; then
-  echo "Installing foreman..."
-  gem install foreman
+# 1. Uses the sh shebang (fixed)
+# 3. Executes overmind with proper arguments (matches OVERMIND settings in .overmind.env)
+
+if ! gem list overmind -i --silent; then
+  echo "Installing overmind..."
+  gem install overmind
 fi
 
 # Default to port 3000 if not specified
 export PORT="${PORT:-3000}"
 
-# Let the debug gem allow remote connections,
-# but avoid loading until `debugger` is called
-export RUBY_DEBUG_OPEN="true"
-export RUBY_DEBUG_LAZY="true"
-
-exec foreman start -f Procfile.dev "$@"
+exec overmind start "$@"%

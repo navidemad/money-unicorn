@@ -1,5 +1,5 @@
 class Dashboard::Youtube::ChannelsController < Dashboard::ApplicationController
-  before_action :set_youtube_channel, only: %i[ show edit update destroy ]
+  before_action :set_youtube_channel, only: %i[ show edit update destroy generate_youtube_short ]
 
   def index
     @youtube_channels = Current.user.youtube_channels
@@ -36,6 +36,11 @@ class Dashboard::Youtube::ChannelsController < Dashboard::ApplicationController
   def destroy
     @youtube_channel.destroy!
     redirect_to youtube_channels_path, notice: "Youtube channel was successfully destroyed.", status: :see_other
+  end
+
+  def generate_youtube_short
+    GenerateYoutubeShortJob.perform_later(youtube_channel_id: @youtube_channel.id)
+    flash.now[:notice] = "Youtube short was enqueued for generation."
   end
 
   private

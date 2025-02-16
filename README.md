@@ -1,4 +1,3 @@
-
 # Money Unicorn
 
 ## Description
@@ -38,3 +37,16 @@ Requirements:
 - Efficient API handling with retries and error management.
 
 Ask me for more details if you need before giving me any code.
+
+## YouTube Shorts Automation Pipeline
+
+This Rails-based pipeline automates the generation and uploading of high-quality YouTube Shorts. It integrates the following components:
+
+- **Google Cloud TTS**: Utilizes the google-cloud-text_to_speech gem for high-quality voice synthesis with SSML support.
+- **AI Content Generation**: Integrates OpenAI via the openai gem to generate engaging content.
+- **Video Composition**: Uses ruby-vips and a placeholder integration with the G4F (SDXL Turbo) API to merge visuals, audio, and subtitles.
+- **Subtitle Formatting**: Implements a SubtitleService to format transcripts into readable subtitles, styled with Tailwind CSS in reusable UI components.
+- **Background Processing**: Leverages ActiveJob with a solid_queue scheduler for asynchronous video processing, orchestrated through the GenerateYoutubeShortJob.
+- **YouTube Integration**: Uploads completed videos to YouTube using a dedicated YouTubeUploaderService.
+
+This pipeline ensures modularity, scalability, and a clean separation of concerns within the Rails application.

@@ -42,25 +42,15 @@ ActiveRecord::Schema[8.1].define(version: 2025_02_15_205821) do
   end
 
   create_table "youtube_shorts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "aspect_ratio"
-    t.string "concatenation_mode"
     t.datetime "created_at", null: false
-    t.boolean "enable_subtitles"
+    t.text "description"
     t.text "keywords"
-    t.string "language"
-    t.integer "max_duration"
-    t.text "script"
-    t.integer "simultaneous_videos"
-    t.string "source"
-    t.string "subject"
-    t.string "subtitle_color"
-    t.string "subtitle_font"
-    t.string "subtitle_outline_color"
-    t.decimal "subtitle_outline_width"
-    t.string "subtitle_position"
-    t.integer "subtitle_size"
+    t.string "status", default: "pending"
+    t.string "title"
+    t.text "transcript"
     t.datetime "updated_at", null: false
     t.uuid "youtube_channel_id", null: false
+    t.index ["status"], name: "index_youtube_shorts_on_status"
     t.index ["youtube_channel_id"], name: "index_youtube_shorts_on_youtube_channel_id"
   end
 

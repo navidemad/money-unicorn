@@ -1,8 +1,8 @@
 <div class="bg-primary text-white shadow-sm">
   <div class="md:w-2/3 w-full mx-auto">
     <div class="flex items-center justify-between px-4 h-full">
-      <div class="w-full py-3">
-        <%= link_to "Money Unicorn", root_path, class: "text-xl" %>
+      <div class="w-full py-4">
+        <%= link_to "Money Unicorn", root_path, class: "text-xl font-bold" %>
         <% if authenticated? %>
           <ul class="menu menu-horizontal px-10!">
             <li><%= link_to "Youtube", dashboard_youtube_channels_path %></li>
@@ -15,8 +15,8 @@
       </div>
       <% if authenticated? %>
         <div class="flex items-center justify-end">
-          <%= link_to session_url, method: :delete, class: "btn btn-error btn-link text-error" do %>
-            Se déconnecter
+          <%= button_to session_path, class: "btnbtn btn-error btn-link text-error", method: :delete do %>
+            Logout
           <% end %>
         </div>
       <% end %>
