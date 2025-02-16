@@ -1,27 +1,20 @@
-class Dashboard::Youtube::Channels::ShortsController < Dashboard::Youtube::Channels::ApplicationController
-  before_action :set_youtube_short, only: %i[ show edit update destroy ]
+class Dashboard::YoutubeChannels::YoutubeShortsController < Dashboard::YoutubeChannels::ApplicationController
+  before_action :set_youtube_short, only: %i[ edit update destroy regenerate ]
 
   def index
-    @youtube_shorts = @youtube_channel.shorts
-  end
-
-  def show
-  end
-
-  def new
-    @youtube_short = @youtube_channel.build_short
+    @youtube_shorts = @youtube_channel.youtube_shorts
   end
 
   def edit
   end
 
   def create
-    @youtube_short = @youtube_channel.build_short(youtube_short_params)
+    @youtube_short = @youtube_channel.youtube_shorts.build(youtube_short_params)
 
     if @youtube_short.save
       redirect_to dashboard_youtube_channel_short_path(account_id: @youtube_channel.id, id: @youtube_short.id), notice: "Youtube short was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -38,9 +31,14 @@ class Dashboard::Youtube::Channels::ShortsController < Dashboard::Youtube::Chann
     redirect_to youtube_shorts_path, notice: "Youtube short was successfully destroyed.", status: :see_other
   end
 
+  def regenerate
+    GenerateYoutubeShortJob.perform_later(youtube_channel_id: @youtube_channel.id, youtube_short_id: @youtube_short.id)
+    flash.now[:notice] = "Youtube short was enqueued for regeneration."
+  end
+
   private
     def set_youtube_short
-      @youtube_short = @youtube_channel.shorts.find(params.expect(:id))
+      @youtube_short = @youtube_channel.youtube_shorts.find(params.expect(:id))
     end
 
     def youtube_short_params

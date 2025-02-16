@@ -19,7 +19,7 @@
 
 # Icons
 
-- Use Heroicons (heroicon_tag "icon-name") for inline SVGs.
+- Use Heroicons (heroicon "icon-name") for inline SVGs (size: 20 for example, you can change the varirant between outline, solid, mini, and micro, outline)
 - Store custom SVGs in app/assets/images/icons/.
 
 # Flash & Notifications

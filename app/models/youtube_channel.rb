@@ -1,5 +1,5 @@
 class YoutubeChannel < ApplicationRecord
-  has_many :shorts, class_name: "YoutubeShort", dependent: :destroy
+  has_many :youtube_shorts, dependent: :destroy
 
   validates :nickname, :niche, :language, presence: true
 end

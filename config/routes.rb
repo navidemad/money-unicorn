@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   resource :session
 
   namespace :dashboard do
-    namespace :youtube do
-      resources :channels do
-        resources :shorts, module: :channels
+    resources :youtube_channels do
+      resources :youtube_shorts, except: %i[ new show ], module: :youtube_channels do
         member do
-          post :generate_youtube_short
+          post :regenerate
         end
+      end
+      member do
+        post :generate_youtube_short
       end
     end
     get "theme", to: "pages#theme"

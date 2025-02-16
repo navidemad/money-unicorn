@@ -50,3 +50,11 @@ This Rails-based pipeline automates the generation and uploading of high-quality
 - **YouTube Integration**: Uploads completed videos to YouTube using a dedicated YouTubeUploaderService.
 
 This pipeline ensures modularity, scalability, and a clean separation of concerns within the Rails application.
+
+## Recent Changes
+
+- Refactored CleanupTempFileJob:
+  - Replaced hard-coded retry values with constants: `RETRY_WAIT_TIME` (5.minutes) and `MAX_RETRY_ATTEMPTS` (3).
+
+- Updated Openai::TextToSpeechService:
+  - Modified the `store_with_active_storage` method to create a `YoutubeShort` record (using `YoutubeChannel.first` as a placeholder) and attach the audio file to its `video_files` association instead of using the `TtsAudio` model.

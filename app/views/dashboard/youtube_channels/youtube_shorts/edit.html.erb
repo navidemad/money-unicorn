@@ -8,16 +8,20 @@
 </div>
 
 <div class="flex items-center justify-between mb-3">
-  <h1 class="font-bold text-2xl">Youtube Shorts (<%= @youtube_channel.shorts.size %>)</h1>
+  <h1 class="font-bold text-2xl">Youtube Short (<%= @youtube_short.id %>)</h1>
 
   <div class="flex items-center justify-start space-x-3">
-    <%= button_to "Generate New Short", generate_youtube_short_dashboard_youtube_channel_path(@youtube_channel), method: :post, class: "btn btn-secondary", data: { turbo_stream: true } %>
+    <%= button_to regenerate_dashboard_youtube_channel_youtube_short_path(youtube_channel_id: @youtube_channel.id, id: @youtube_short.id),
+        method: :post,
+        class: "btn btn-secondary btn-sm grow",
+        target: "_top",
+        data: { turbo_stream: true } do %>
+      <span class="mr-2">
+        <%= heroicon "arrow-path", variant: "mini", class: "w-4 h-4" %>
+      </span>
+      Regenerate
+    <% end %>
   </div>
 </div>
 
-<%= turbo_stream_from [@youtube_channel, :youtube_shorts] %>
-<%= turbo_frame_tag "youtube_shorts" do %>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    <%= render partial: @youtube_channel.shorts, collection: @youtube_channel.shorts %>
-  </div>
-<% end %>
+<%= render "form", youtube_short: @youtube_short %>

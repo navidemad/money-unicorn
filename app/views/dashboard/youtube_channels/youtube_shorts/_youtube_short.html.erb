@@ -1,0 +1,75 @@
+<%= turbo_frame_tag youtube_short, class: "card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300" do %>
+  <div class="card-body p-2! aspect-[9/16] flex flex-col">
+    <%# Main content area with gradient overlay %>
+    <div class="relative flex-1 rounded-lg bg-gray-100 overflow-hidden">
+      <% if youtube_short.video.attached? %>
+        <video class="w-full h-full object-cover" controls>
+          <source src="<%= url_for(youtube_short.video) %>" type="<%= youtube_short.video.blob.content_type %>">
+          Your browser does not support the video tag.
+        </video>
+      <% else %>
+        <%# Video thumbnail placeholder - you might want to add actual thumbnail here %>
+        <div class="absolute inset-0 bg-gray-100">No video attached yet</div>
+      <% end %>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60"></div>
+      
+      <%# Content overlay %>
+      <div class="absolute bottom-0 left-0 right-0 p-3 text-white">
+        <mark><%= (Time.zone.now.to_f * 1000).to_i %></mark>
+        <h2 class="text-lg font-bold line-clamp-2"><%= youtube_short.title %></h2>
+        <p class="text-sm text-gray-200 mt-1 line-clamp-2"><%= truncate(youtube_short.transcript, length: 100) %></p>
+      </div>
+    </div>
+
+    <%# Action buttons %>
+    <div class="badge badge-primary w-full!">Status: <%= youtube_short.status %></div>
+
+    <div class="flex flex-col gap-2">
+      <div class="flex items-center justify-center space-x-2 w-full">    
+        <%= link_to edit_dashboard_youtube_channel_youtube_short_path(youtube_channel_id: youtube_short.youtube_channel_id, id: youtube_short.id),
+            class: "btn btn-primary btn-sm grow",
+            target: "_top" do %>
+          <span class="mr-2">
+            <%= heroicon "pencil", variant: "mini", class: "w-4 h-4" %>
+          </span>
+          Edit
+        <% end %>
+        
+        <%= button_to regenerate_dashboard_youtube_channel_youtube_short_path(youtube_channel_id: youtube_short.youtube_channel_id, id: youtube_short.id),
+            method: :post,
+            class: "btn btn-secondary btn-sm grow",
+            target: "_top",
+            data: { turbo_stream: true } do %>
+          <span class="mr-2">
+            <%= heroicon "arrow-path", variant: "mini", class: "w-4 h-4" %>
+          </span>
+          Regenerate
+        <% end %>
+      </div>
+
+      <div class="w-full">
+        <% if youtube_short.audio.attached? %>
+          <audio controls class="w-full">
+            <source src="<%= url_for(youtube_short.audio) %>" type="<%= youtube_short.audio.blob.content_type %>">
+            Your browser does not support the audio element.
+          </audio>
+        <% else %>
+          No audio attached yet
+        <% end %>
+      </div>
+
+      <div class="w-full">
+        <% if youtube_short.srt.attached? %>
+          <div class="text-sm text-center text-gray-600">
+            <%= heroicon "document-text", variant: "mini", class: "w-4 h-4 inline" %>
+            SRT file attached
+          </div>
+        <% else %>
+          <div class="text-sm text-center text-gray-400">
+            No SRT file attached yet
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

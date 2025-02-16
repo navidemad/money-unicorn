@@ -17,8 +17,9 @@ gem "kamal", require: false
 gem "thruster", require: false
 gem "image_processing"
 gem "google-cloud-text_to_speech"
-gem 'ruby-vips'
-gem 'ruby-openai'
+gem "ruby-vips"
+gem "ruby-openai"
+gem "rails_heroicon"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
