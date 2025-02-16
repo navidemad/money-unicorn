@@ -1,0 +1,41 @@
+<div class="flex items-center justify-start space-x-4">
+  <h1 class="font-bold text-4xl mb-3">Youtube Channels</h1>
+  <%= link_to "New", new_dashboard_youtube_channel_path, class: "btn btn-sm btn-primary" %>
+</div>
+
+<div class="overflow-x-auto">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Channel</th>
+        <th>Niche</th>
+        <th>Language</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @youtube_channels.any? %>
+        <% @youtube_channels.each do |youtube_channel| %>
+          <tr>
+            <td>
+              <%= youtube_channel.id %>
+            </td>
+            <td class="font-bold">
+              <%= youtube_channel.nickname %>
+            </td>
+            <td>
+              <%= youtube_channel.niche %>
+            </td>
+            <td>
+              <%= youtube_channel.language %>
+            </td>
+            <td>
+              <%= link_to "Show", dashboard_youtube_channel_path(youtube_channel), class: "btn btn-sm btn-primary btn-outline" %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

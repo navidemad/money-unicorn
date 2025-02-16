@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 3b79de3df3d200acd0f291b1a08d9181ddee4605
+  revision: 8e504b017a68981076746c2d19fd23c788e4293e
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -365,7 +365,6 @@ DEPENDENCIES
   solid_queue
   stimulus-rails
   tailwindcss-rails
-  tailwindcss-ruby
   thruster
   turbo-rails
   web-console

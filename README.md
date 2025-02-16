@@ -1,24 +1,18 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Money Unicorn
 
-Things you may want to cover:
+Ruby on Rails boilerplate for your "Money Automater" dashboard—focusing initially on the YouTube Shorts Automater.
 
-* Ruby version
+- [ ] Create a Short based on long-form content
+- [ ] Subtitles for Shorts
 
-* System dependencies
+You can improve the Youtube shorts more
+by adding rounded background with text
 
-* Configuration
+and every text the TTS speaks should get highlighted
 
-* Database creation
+more like shortGPT (*another printer*)
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+you need to make your videos longer, to explain your code, less cuts. less tiktok edits my dude.
+short cuts, fast talking, is not a thing for dev code projects.
+i am not trying to make you hard work to be less worthy, just years of observation for this type of content.

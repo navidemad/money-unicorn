@@ -21,9 +21,12 @@
   </head>
 
   <body>
-    <% if authenticated? %>
-      <%= render "layouts/shared/header" %>
-    <% end %>
-    <%= yield %>
+    <%= render "layouts/shared/header" %>
+    <div class="md:w-2/3 pt-3 w-full mx-auto">
+      <%= render "layouts/shared/flashes" %>
+      <main class="py-4 px-4">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>

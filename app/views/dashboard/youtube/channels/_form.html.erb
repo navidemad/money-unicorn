@@ -1,0 +1,32 @@
+<%= form_with(model: [:dashboard, youtube_channel], class: "contents") do |form| %>
+  <% if youtube_channel.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(youtube_channel.errors.count, "error") %> prohibited this youtube_channel from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% youtube_channel.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :nickname %>
+    <%= form.text_field :nickname, class: ["block shadow-sm rounded-md border outline-hidden px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": youtube_channel.errors[:nickname].none?, "border-red-400 focus:outline-red-600": youtube_channel.errors[:nickname].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :niche %>
+    <%= form.text_field :niche, class: ["block shadow-sm rounded-md border outline-hidden px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": youtube_channel.errors[:niche].none?, "border-red-400 focus:outline-red-600": youtube_channel.errors[:niche].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :language %>
+    <%= form.text_field :language, class: ["block shadow-sm rounded-md border outline-hidden px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": youtube_channel.errors[:language].none?, "border-red-400 focus:outline-red-600": youtube_channel.errors[:language].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit youtube_channel.new_record? ? "Create" : "Update", class: "btn btn-primary" %>
+  </div>
+<% end %>

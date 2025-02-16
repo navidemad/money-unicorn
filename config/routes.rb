@@ -3,14 +3,17 @@ Rails.application.routes.draw do
   
   resource :session
 
-  namespace :admin do
+  namespace :dashboard do
     namespace :youtube do
-      resources :shorts, only: [:index]
+      resources :channels do
+        resources :shorts, module: :channels
+      end
     end
     get "theme", to: "pages#theme"
+    get "home", to: "pages#index"
 
-    root to: "youtube/shorts#index"
+    root to: "pages#index"
   end
 
-  root to: "admin/youtube/shorts#index"
+  root to: "dashboard/pages#index"
 end

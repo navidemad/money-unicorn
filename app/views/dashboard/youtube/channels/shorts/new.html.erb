@@ -1,0 +1,208 @@
+<%= form_with(model: @video, local: true, class: "space-y-4") do |f| %>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <!-- Video Script Settings -->
+    <div class="card bg-base-200">
+      <div class="card-body">
+        <h2 class="card-title">Video Script Settings</h2>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Video Subject (Provide a keyword, it will automatically generate video script)</span>
+          </label>
+          <%= f.text_field :subject, class: "input input-bordered w-full" %>
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Language for Generating Video Script</span>
+          </label>
+          <%= f.select :language, ['Auto Detect', 'English', 'Spanish'], {}, class: "select select-bordered w-full" %>
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Video Script</span>
+          </label>
+          <%= f.text_area :script, class: "textarea textarea-bordered h-32", placeholder: "AI generated script will appear here" %>
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Video Keywords</span>
+          </label>
+          <%= f.text_area :keywords, class: "textarea textarea-bordered h-32", placeholder: "AI generated keywords will appear here" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Settings -->
+    <div class="card bg-base-200">
+      <div class="card-body">
+        <h2 class="card-title">Video Settings</h2>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Video Source</span>
+          </label>
+          <%= f.select :source, ['Local File'], {}, class: "select select-bordered w-full" %>
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Upload Local Files</span>
+          </label>
+          <div class="border-2 border-dashed border-base-content/20 rounded-lg p-8 text-center" id="dropZone">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-2 w-8 h-8 text-base-content/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <p class="text-sm text-base-content/70">
+              Drag and drop files here
+            </p>
+            <p class="text-xs text-base-content/50 mt-1">
+              Limit 200MB per file • MP4, MOV, AVI, FLV, MKV, JPG, JPEG, PNG, MPEG4
+            </p>
+            <%= f.file_field :video_files, multiple: true, class: "hidden", data: { target: 'dropzone.input' } %>
+            <button type="button" class="btn btn-sm mt-4" onclick="document.querySelector('#video_video_files').click()">
+              Browse files
+            </button>
+          </div>
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Video Concatenation Mode</span>
+          </label>
+          <%= f.select :concatenation_mode, ['Random Concatenation (Recommended)'], {}, class: "select select-bordered w-full" %>
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Video Aspect Ratio</span>
+          </label>
+          <%= f.select :aspect_ratio, ['Portrait 9:16'], {}, class: "select select-bordered w-full" %>
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Maximum Duration of Video Clips (seconds)</span>
+          </label>
+          <%= f.select :max_duration, [3], {}, class: "select select-bordered w-full" %>
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text">Number of Videos Generated Simultaneously</span>
+          </label>
+          <%= f.select :simultaneous_videos, [1], {}, class: "select select-bordered w-full" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subtitle Settings -->
+    <div class="card bg-base-200">
+      <div class="card-body">
+        <h2 class="card-title">Subtitle Settings</h2>
+
+        <div class="form-control">
+          <label class="label cursor-pointer justify-start gap-2">
+            <%= f.check_box :enable_subtitles, class: "checkbox", onchange: "document.getElementById('subtitleSettings').classList.toggle('opacity-50')" %>
+            <span class="label-text">Enable Subtitles</span>
+          </label>
+        </div>
+
+        <div id="subtitleSettings">
+          <div class="form-control w-full">
+            <label class="label">
+              <span class="label-text">Subtitle Font</span>
+            </label>
+            <%= f.select :subtitle_font, ['MicrosoftYaHeiGold.ttc'], {}, class: "select select-bordered w-full" %>
+          </div>
+
+          <div class="form-control w-full">
+            <label class="label">
+              <span class="label-text">Subtitle Position</span>
+            </label>
+            <%= f.select :subtitle_position, ['Bottom (Recommended)'], {}, class: "select select-bordered w-full" %>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Subtitle Font Color</span>
+              </label>
+              <%= f.color_field :subtitle_color, class: "w-full h-10 rounded-lg" %>
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Subtitle Font Size</span>
+              </label>
+              <%= f.range_field :subtitle_size, min: 30, max: 100, class: "range" %>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Subtitle Outline Color</span>
+              </label>
+              <%= f.color_field :subtitle_outline_color, value: "#000000", class: "w-full h-10 rounded-lg" %>
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Subtitle Outline Width</span>
+              </label>
+              <%= f.range_field :subtitle_outline_width, min: 0, max: 10, step: 0.1, class: "range" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit "Generate Video", class: "btn btn-error w-full mt-4" %>
+<% end %>
+</div>
+
+<% content_for :scripts do %>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const dropZone = document.getElementById('dropZone');
+      const fileInput = document.querySelector('#video_video_files');
+
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+      });
+
+      function preventDefaults (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, highlight, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+      });
+
+      function highlight(e) {
+        dropZone.classList.add('dragover');
+      }
+
+      function unhighlight(e) {
+        dropZone.classList.remove('dragover');
+      }
+
+      dropZone.addEventListener('drop', handleDrop, false);
+
+      function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        fileInput.files = files;
+      }
+    });
+  </script>
+<% end %>
