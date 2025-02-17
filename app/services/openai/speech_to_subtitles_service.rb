@@ -108,11 +108,13 @@ module Openai
         srt_data = File.binread(srt_path)
         stream = StringIO.new(srt_data)
         stream.rewind
-        object.srt.attach(
-          io: stream,
-          filename: File.basename(srt_path),
+        blob = ActiveStorage::Blob.create_and_upload!(
+          io: stream, 
+          filename: File.basename(srt_path), 
           content_type: "application/x-subrip"
         )
+        blob.analyze
+        object.srt.attach(blob)
       end
 
       schedule_cleanup(srt_path)

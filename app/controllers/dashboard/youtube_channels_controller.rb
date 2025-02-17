@@ -2,7 +2,7 @@ class Dashboard::YoutubeChannelsController < Dashboard::ApplicationController
   before_action :set_youtube_channel, only: %i[ show edit update destroy generate_youtube_short ]
 
   def index
-    @youtube_channels = Current.user.youtube_channels
+    @youtube_channels = Current.user.youtube_channels.preload(youtube_shorts: { audio_attachment: :blob, srt_attachment: :blob, video_attachment: :blob, images_attachments: :blob })
   end
 
   def show
@@ -34,7 +34,7 @@ class Dashboard::YoutubeChannelsController < Dashboard::ApplicationController
   end
 
   def destroy
-    # @youtube_channel.destroy!
+    @youtube_channel.destroy!
     redirect_to dashboard_youtube_channels_path, notice: "Youtube channel was successfully destroyed.", status: :see_other
   end
 

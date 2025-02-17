@@ -17,7 +17,6 @@
     <%= yield :head %>
 
     <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
@@ -28,7 +27,7 @@
 
   <body>
     <%= render "layouts/shared/header" %>
-    <div class="md:w-2/3 pt-3 w-full mx-auto">
+    <div class="md:w-4/5 pt-3 w-full mx-auto">
       <%= render "layouts/shared/flash_messages" %>
       <main class="py-4 px-4">
         <%= yield %>

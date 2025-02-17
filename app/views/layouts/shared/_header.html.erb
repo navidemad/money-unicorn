@@ -1,20 +1,23 @@
 <div class="bg-primary text-white shadow-sm">
-  <div class="md:w-2/3 w-full mx-auto">
-    <div class="flex items-center justify-between px-4 h-full">
-      <div class="w-full py-4">
-        <%= link_to "Money Unicorn", root_path, class: "text-xl font-bold" %>
+  <div class="md:w-4/5 w-full mx-auto">
+    <div class="flex items-start justify-between px-4 h-full">
+      <div class="w-full py-2">
+        <%= link_to root_path, class: "flex items-center justify-start space-x-4" do %>
+          <%= image_tag "/icon.png", class: "w-10 h-10" %>
+          <span class="text-xl font-bold">Money Unicorn</span>
+        <% end %>
         <% if authenticated? %>
-          <ul class="menu menu-horizontal px-10!">
+          <ul class="menu menu-horizontal px-0!">
             <li><%= link_to "Youtube", dashboard_youtube_channels_path %></li>
             <li><%= link_to "DaisyUI", "https://v5.daisyui.com/docs/v5-beta/", target: "_blank" %></li>
             <li><%= link_to "Icons", "https://heroicons.com/", target: "_blank" %></li>
-            <li><%= link_to "GH chinois", "https://github.com/harry0703/MoneyPrinterTurbo", target: "_blank" %></li>
-            <li><%= link_to "GH francais", "https://github.com/FujiwaraChoki/MoneyPrinterV2", target: "_blank" %></li>
+            <li><%= link_to "GH ZN", "https://github.com/harry0703/MoneyPrinterTurbo", target: "_blank" %></li>
+            <li><%= link_to "GH fFR", "https://github.com/FujiwaraChoki/MoneyPrinterV2", target: "_blank" %></li>
           </ul>
         <% end %>
       </div>
       <% if authenticated? %>
-        <div class="flex items-center justify-end">
+        <div class="flex items-center justify-end mt-3">
           <%= button_to session_path, class: "btnbtn btn-error btn-link text-error", method: :delete do %>
             Logout
           <% end %>

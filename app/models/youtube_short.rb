@@ -2,6 +2,7 @@ class YoutubeShort < ApplicationRecord
   belongs_to :youtube_channel
   has_one_attached :audio
   has_one_attached :srt
+  has_many_attached :images
   has_one_attached :video
 
   validates :status, presence: true

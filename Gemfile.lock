@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: d6bd069ec652c3f6478385a75fd499e5f791de3a
+  revision: 00cc4ff0259c0185fe08baadaa40e63ea2534f6e
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -394,6 +394,8 @@ GEM
       ostruct
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
+    streamio-ffmpeg (3.0.2)
+      multi_json (~> 1.8)
     stringio (3.1.3)
     tailwindcss-rails (4.0.0)
       railties (>= 7.0.0)
@@ -454,18 +456,19 @@ DEPENDENCIES
   image_processing
   importmap-rails
   kamal
+  mini_magick
   pg
   propshaft
   puma
   rails!
   rails_heroicon
   ruby-openai
-  ruby-vips
   selenium-webdriver
   solid_cable
   solid_cache
   solid_queue
   stimulus-rails
+  streamio-ffmpeg
   tailwindcss-rails
   thruster
   turbo-rails
